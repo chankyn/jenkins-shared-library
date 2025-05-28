@@ -1,45 +1,3 @@
-/*
-This function merges a list of Kubernetes Pod
-templates defined in a shared library to create
-a single Pod definition for the build job. Without this
-function, the agent definition would have to be defined
-for each stage.
-
-Usage example:
-
-// load shared library via @Library or other methods
-pipeline {
-  agent {
-    kubernetes {
-        yaml mergePodTemplates('node-10,sonar-scanner,veracode')
-    }
-  }
-  stages {
-    stage('Build App'){
-      steps {
-        container('node-10'){
-          sh 'npm install'
-        }
-      }
-    }
-    stage('SonarQube Analysis') {
-      steps {
-        container('sonar-scanner'){
-          // scan
-        }
-      }
-    }
-    stage('Veracode Analysis') {
-      steps {
-        container('veracode'){
-          // scan
-        }
-      }
-    }
-  } //  stages
-}
-*/
-
 import org.csanchez.jenkins.plugins.kubernetes.PodTemplate  
 import org.csanchez.jenkins.plugins.kubernetes.pod.yaml.Merge
 import static org.csanchez.jenkins.plugins.kubernetes.PodTemplateUtils.combine
@@ -59,6 +17,7 @@ def call(String yamlFiles){
     println "yamlFiles: "+yamlFilesSplit
     String parentYaml = addYamlExt(yamlFilesSplit[0])
     println "ParentFile: "+parentYaml
+    writeFile("")
     parentYaml = libraryResource(parentYaml)
     PodTemplate parent = new PodTemplate()
     parent.setYaml(parentYaml)

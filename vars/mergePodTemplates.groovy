@@ -32,7 +32,7 @@ def call(String yamlFiles){
         
         PodTemplate child = new PodTemplate()
         child.setYaml(childYaml)
-        child.setYamlMergeStrategy(new Merge())
+        //child.setYamlMergeStrategy(new Merge())
         child.setInheritFrom("parent")
 
         PodTemplate result = combine(parent, child)

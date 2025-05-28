@@ -56,20 +56,20 @@ def addYamlExt(String string)  {
 def call(String yamlFiles){
 
     String[] yamlFilesSplit = yamlFiles.split(',')
-    //println "yamlFiles: "+yamlFilesSplit
+    println "yamlFiles: "+yamlFilesSplit
     String parentYaml = addYamlExt(yamlFilesSplit[0])
-    //println "ParentFile: "+parentYaml
+    println "ParentFile: "+parentYaml
     parentYaml = libraryResource(parentYaml)
     PodTemplate parent = new PodTemplate()
     parent.setYaml(parentYaml)
 
     for (i = 1; i < yamlFilesSplit.size(); i++) {
         String childYaml = addYamlExt(yamlFilesSplit[i])
-        //println "ChildFile: "+childYaml
+        println "ChildFile: "+childYaml
         childYaml = libraryResource(childYaml)
 
-        //println "Parent ---\n" + parent
-        //println "ChildYaml ---\n" + childYaml
+        println "Parent ---\n" + parent
+        println "ChildYaml ---\n" + childYaml
         
         PodTemplate child = new PodTemplate()
         child.setYaml(childYaml)

@@ -17,7 +17,7 @@ def call(String yamlFiles){
     println "yamlFiles: "+yamlFilesSplit
     String parentYaml = addYamlExt(yamlFilesSplit[0])
     println "ParentFile: "+parentYaml
-    writeFile("")
+
     parentYaml = libraryResource(parentYaml)
     PodTemplate parent = new PodTemplate()
     parent.setYaml(parentYaml)
